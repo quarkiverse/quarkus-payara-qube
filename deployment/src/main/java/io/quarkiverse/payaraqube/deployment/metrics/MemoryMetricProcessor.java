@@ -26,7 +26,6 @@ public class MemoryMetricProcessor {
             BuildProducer<MetricsFactoryConsumerBuildItem> metrics,
             Optional<MetricsCapabilityBuildItem> metricsCapability) {
         if (metricsCapability.isPresent()) {
-            System.out.println("Registering Payara Metrics");
             recorder.initCounters();
             metrics.produce(new MetricsFactoryConsumerBuildItem(recorder.registerMetrics()));
         }
