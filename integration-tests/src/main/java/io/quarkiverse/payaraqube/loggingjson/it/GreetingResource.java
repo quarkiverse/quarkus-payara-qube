@@ -1,0 +1,28 @@
+package fish.payara.loggingjson.it;
+
+import java.util.logging.Logger;
+
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+
+@Path("/hello")
+public class GreetingResource {
+
+    private static final Logger logger = Logger.getLogger(GreetingResource.class.getName());
+
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String hello() {
+        logger.info("Hello to \"Quarkus\"");
+        return "hello";
+    }
+
+    @GET
+    @Path("/exception")
+    public String exception() {
+        logger.info("Throwing an exception");
+        throw new RuntimeException("This is a test exception");
+    }
+}
