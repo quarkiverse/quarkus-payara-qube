@@ -1,4 +1,4 @@
-package fish.payara.cloud.buildItem;
+package io.quarkiverse.payaraqube.buildItem;
 
 import java.nio.file.Path;
 

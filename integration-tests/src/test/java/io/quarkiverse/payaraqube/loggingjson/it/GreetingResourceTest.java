@@ -1,4 +1,4 @@
-package fish.payara.loggingjson.it;
+package io.quarkiverse.payaraqube.loggingjson.it;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;

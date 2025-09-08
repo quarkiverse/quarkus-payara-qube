@@ -1,4 +1,4 @@
-package fish.payara.cloud.metrics;
+package io.quarkiverse.payaraqube.metrics;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;

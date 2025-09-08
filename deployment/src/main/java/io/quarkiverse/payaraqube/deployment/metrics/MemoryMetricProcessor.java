@@ -1,8 +1,8 @@
-package fish.payara.cloud.deployment.metrics;
+package io.quarkiverse.payaraqube.deployment.metrics;
 
 import java.util.Optional;
 
-import fish.payara.cloud.metrics.MetricsRecorder;
+import io.quarkiverse.payaraqube.metrics.MetricsRecorder;
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.annotations.ExecutionTime;
