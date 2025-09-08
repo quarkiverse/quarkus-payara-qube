@@ -56,5 +56,6 @@ jobs:
       - name: Build with Maven
         run: mvn -B clean install -Dno-format
 
-      - name: Build with Maven (Native)
-        run: mvn -B install -Dnative -Dquarkus.native.container-build -Dnative.surefire.skip
+# The extension is not intended to use with native images
+#      - name: Build with Maven (Native)
+#        run: mvn -B install -Dnative -Dquarkus.native.container-build -Dnative.surefire.skip
