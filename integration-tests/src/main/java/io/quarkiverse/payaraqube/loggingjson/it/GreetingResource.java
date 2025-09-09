@@ -1,4 +1,4 @@
-package fish.payara.loggingjson.it;
+package io.quarkiverse.payaraqube.loggingjson.it;
 
 import java.util.logging.Logger;
 

@@ -1,4 +1,4 @@
-package fish.payara.cloud.cloudzip;
+package io.quarkiverse.payaraqube.deployment.cloudzip;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

@@ -1,8 +1,8 @@
-package fish.payara.cloud.deployment.metrics;
+package io.quarkiverse.payaraqube.deployment.metrics;
 
 import java.util.Optional;
 
-import fish.payara.cloud.metrics.MetricsRecorder;
+import io.quarkiverse.payaraqube.metrics.MetricsRecorder;
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.annotations.ExecutionTime;
@@ -26,7 +26,6 @@ public class MemoryMetricProcessor {
             BuildProducer<MetricsFactoryConsumerBuildItem> metrics,
             Optional<MetricsCapabilityBuildItem> metricsCapability) {
         if (metricsCapability.isPresent()) {
-            System.out.println("Registering Payara Metrics");
             recorder.initCounters();
             metrics.produce(new MetricsFactoryConsumerBuildItem(recorder.registerMetrics()));
         }

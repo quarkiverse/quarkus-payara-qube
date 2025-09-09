@@ -1,4 +1,4 @@
-package fish.payara.cloud.config;
+package io.quarkiverse.payaraqube.config;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,14 +13,13 @@ import org.eclipse.microprofile.config.spi.ConfigSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PayaraCloudConfigSource implements ConfigSource {
-    private static final Logger log = LoggerFactory.getLogger(PayaraCloudConfigSource.class);
+public class PayaraQubeConfigSource implements ConfigSource {
+    private static final Logger log = LoggerFactory.getLogger(PayaraQubeConfigSource.class);
     private static final String CONFIG_PATH = "/config/application.properties";
     private static final String MICROPROFILE_CONFIG_PATH = "/config/microprofile-config.properties";
     private final Map<String, String> properties = new HashMap<>();
 
-    public PayaraCloudConfigSource() {
-        log.info("PayaraCloudConfigSource initialized: Loading Properties");
+    public PayaraQubeConfigSource() {
         loadProperties();
     }
 
@@ -41,7 +40,7 @@ public class PayaraCloudConfigSource implements ConfigSource {
 
     @Override
     public String getName() {
-        return PayaraCloudConfigSource.class.getSimpleName();
+        return PayaraQubeConfigSource.class.getSimpleName();
     }
 
     @Override

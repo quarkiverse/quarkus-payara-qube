@@ -1,6 +1,6 @@
-package fish.payara.cloud.deployment.config;
+package io.quarkiverse.payaraqube.deployment.config;
 
-import fish.payara.cloud.config.PayaraCloudConfigBuilder;
+import io.quarkiverse.payaraqube.config.PayaraQubeConfigBuilder;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.builditem.FeatureBuildItem;
 import io.quarkus.deployment.builditem.RunTimeConfigBuilderBuildItem;
@@ -16,7 +16,6 @@ public class PayaraCloudConfigSourceProcessor {
 
     @BuildStep
     RunTimeConfigBuilderBuildItem configBuilder() {
-        System.out.println("Registering Quarkus Config Source");
-        return new RunTimeConfigBuilderBuildItem(PayaraCloudConfigBuilder.class.getName());
+        return new RunTimeConfigBuilderBuildItem(PayaraQubeConfigBuilder.class.getName());
     }
 }

@@ -1,4 +1,4 @@
-package fish.payara.cloud.deployment.cloudzip;
+package io.quarkiverse.payaraqube.deployment.cloudzip;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -9,7 +9,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fish.payara.cloud.cloudzip.ZipPackager;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.builditem.FeatureBuildItem;
 import io.quarkus.deployment.pkg.builditem.ArtifactResultBuildItem;
