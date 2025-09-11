@@ -5,7 +5,7 @@
     <parent>
         <groupId>io.quarkiverse.payara-qube</groupId>
         <artifactId>quarkus-payara-qube-parent</artifactId>
-        <version>1.0.0.Alpha1</version>
+        <version>999-SNAPSHOT</version>
     </parent>
     <artifactId>quarkus-payara-qube-deployment</artifactId>
     <name>Quarkus Payara Qube - Deployment</name>

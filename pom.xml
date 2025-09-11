@@ -9,7 +9,7 @@
     </parent>
     <groupId>io.quarkiverse.payara-qube</groupId>
     <artifactId>quarkus-payara-qube-parent</artifactId>
-    <version>1.0.0.Alpha1</version>
+    <version>999-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Quarkus Payara Qube - Parent</name>
 
@@ -22,7 +22,7 @@
         <connection>scm:git:git@github.com:quarkiverse/quarkus-payara-qube.git</connection>
         <developerConnection>scm:git:git@github.com:quarkiverse/quarkus-payara-qube.git</developerConnection>
         <url>https://github.com/quarkiverse/quarkus-payara-qube</url>
-      <tag>1.0.0.Alpha1</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <properties>
