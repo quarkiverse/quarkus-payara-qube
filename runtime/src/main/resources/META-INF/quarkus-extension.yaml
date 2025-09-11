@@ -1,6 +1,12 @@
-name: Payara Qube
-#description: Do some thing useful.
+name: Payara Qube Support
+description: Runtime configuration for deploying to Payara Qube
 metadata:
+  keywords:
+    - payara-qube
+    - cloud-deployment
+  categories:
+    - Cloud
+  status: preview
 #  keywords:
 #    - payara-qube
 #  guide: https://docs.quarkiverse.io/payara-qube/dev/ # To create and publish this guide, see https://github.com/quarkiverse/quarkiverse/wiki#documenting-your-extension
