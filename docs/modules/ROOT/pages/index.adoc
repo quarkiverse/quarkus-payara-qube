@@ -2,13 +2,13 @@
 
 include::./includes/attributes.adoc[]
 
-TIP: Describe what the extension does here.
+https://www.payara.fish/products/cloud-native-java-deployment-platform/payara-qube/[Payara Qube] is a cloud runtime that is run either as a managed service or on your own cloud provider's account.
+
+This extension configures your Quarkus application so it is compatible with Payara Qube.
 
 == Installation
 
-If you want to use this extension, you need to add the `io.quarkiverse.payara-qube:quarkus-payara-qube` extension first to your build file.
-
-For instance, with Maven, add the following dependency to your POM file:
+If you want to use this extension, you need to add the `io.quarkiverse.payara-qube:quarkus-payara-qube` extension first to your build file:
 
 [source,xml,subs=attributes+]
 ----
@@ -19,9 +19,34 @@ For instance, with Maven, add the following dependency to your POM file:
 </dependency>
 ----
 
+== Deploying to Payara Qube
+
+Once your applications builds with this extension enabled, it will produce a ZIP file in your build target folder.
+Upload this ZIP file via Payara Qube user interface (https://docs.payara.fish/cloud/docs/user-guides/common/application/Deploying%20an%20Application.html#upload-an-application[Payara Qube Documentation Reference]) or via CLI (https://docs.payara.fish/cloud/docs/cli/user-guide.html#_application_management[CLI reference]).
+
+That's all that's into it.
+Your application now runs in the cloud.
+
 [[extension-configuration-reference]]
-== Extension Configuration Reference
+== Effects of the extension
 
-TIP: Remove this section if you don't have Quarkus configuration properties in your extension.
+ZIP File is produced as distribution package::
+In your build output directory there is a ZIP file that you can upload to Payara Qube.
 
-include::includes/quarkus-payara-qube.adoc[leveloffset=+1, opts=optional]
+Logs in Qube-specific JSON format::
+Logging configuration is overriden to conform to what the runtime expects in order to be able to search through your log entries.
++
+Please only use standard logging APIs and don't attempt to alter the logging format.
+
+Metrics endpoint::
+Metrics endpoint is exposed to the runtime so that memory metrics is available to the runtime and in the UI
+
+Configuration Sources::
+Additional configuration sources are defined which correspond to configuration files that runtime will provide.
+
+== Limitations
+
+Payara Qube does not perform https://quarkus.io/guides/reaugmentation[reaugmentation] and therefore only runtime properties are effective when set in Payara Qube UI.
+
+Execution environment is constrained that it can only access temporary directory and cannot spawn any additional processes.
+Applications or extensions that will try to perform such operations will fail.
