@@ -2,13 +2,26 @@
 
 include::./includes/attributes.adoc[]
 
-https://www.payara.fish/products/cloud-native-java-deployment-platform/payara-qube/[Payara Qube] is a cloud runtime that is run either as a managed service or on your own cloud provider's account.
+== What is Payara Qube?
 
-This extension configures your Quarkus application so it is compatible with Payara Qube.
+Payara Qube is a Java deployment platform that runs Jakarta EE, Spring Boot, and Quarkus applications in production.
+It provides a complete, unified runtime environment with built-in monitoring, logging, and scaling capabilities.
+
+The platform is available in two consumption models:
+
+**Payara Qube (Managed)**:: A fully managed cloud service where Payara hosts and operates the infrastructure. You deploy applications through a web console or CLI, and the platform handles all operational concerns.
+
+**Payara Qube (Self-Hosted)**:: Install and run the platform on your own infrastructure, whether on-premises or in your cloud infrastructure. You maintain full control over the deployment environment while using the same runtime capabilities as the managed service.
+
+Both models provide identical functionality for deploying and running applications. The choice depends on your operational preferences and infrastructure requirements.
+
+== About This Extension
+
+This extension prepares your Quarkus application for deployment to Payara Qube. It configures logging, metrics, and packaging to match the platform's runtime requirements, ensuring your application integrates properly with Payara Qube's monitoring and management features.
 
 == Installation
 
-If you want to use this extension, you need to add the `io.quarkiverse.payara-qube:quarkus-payara-qube` extension first to your build file:
+Add the extension to your project:
 
 [source,xml,subs=attributes+]
 ----
@@ -19,34 +32,51 @@ If you want to use this extension, you need to add the `io.quarkiverse.payara-qu
 </dependency>
 ----
 
-== Deploying to Payara Qube
+== Building and Deploying
 
-Once your applications builds with this extension enabled, it will produce a ZIP file in your build target folder.
-Upload this ZIP file via Payara Qube user interface (https://docs.payara.fish/cloud/docs/user-guides/common/application/Deploying%20an%20Application.html#upload-an-application[Payara Qube Documentation Reference]) or via CLI (https://docs.payara.fish/cloud/docs/cli/user-guide.html#_application_management[CLI reference]).
+Build your application with Maven or Gradle as normal. The extension produces a ZIP file in your build output directory (typically `target/` for Maven or `build/` for Gradle).
 
-That's all that's into it.
-Your application now runs in the cloud.
+Deploy this ZIP file to Payara Qube:
+
+**Via Console**:: Upload through the web interface at https://docs.payara.fish/cloud/docs/user-guides/common/application/Deploying%20an%20Application.html#upload-an-application[upload application]
+
+**Via CLI**:: Use the command-line tool documented at https://docs.payara.fish/cloud/docs/cli/user-guide.html#_application_management[Payara Qube CLI]
+
+Once deployed, your application runs on the Payara Qube runtime with full access to monitoring, logging, and scaling features.
+
+== What the Extension Configures
 
 [[extension-configuration-reference]]
-== Effects of the extension
+=== Application Package
+Produces a ZIP distribution containing your application and its dependencies, structured for the Payara Qube runtime.
 
-ZIP File is produced as distribution package::
-In your build output directory there is a ZIP file that you can upload to Payara Qube.
+=== Logging Format
+Configures JSON-formatted logging that integrates with Payara Qube's log aggregation system. This enables log search, filtering, and analysis through the management console.
 
-Logs in Qube-specific JSON format::
-Logging configuration is overriden to conform to what the runtime expects in order to be able to search through your log entries.
-+
-Please only use standard logging APIs and don't attempt to alter the logging format.
+Use standard SLF4J or JBoss Logging APIs in your application code. The extension handles format configuration.
 
-Metrics endpoint::
-Metrics endpoint is exposed to the runtime so that memory metrics is available to the runtime and in the UI
+[WARNING]
+====
+Do not override the logging format in your application configuration. Overriding the format will prevent your logs from appearing correctly in the console.
+====
 
-Configuration Sources::
-Additional configuration sources are defined which correspond to configuration files that runtime will provide.
+=== Metrics Endpoint
+Exposes application and runtime metrics to Payara Qube's monitoring system. Memory usage, request rates, and custom application metrics become visible in the management console.
 
-== Limitations
+=== Configuration Sources
+Provides additional MicroProfile Config sources that read configuration from files supplied by the Payara Qube runtime. This allows you to modify configuration through the console without rebuilding your application.
 
-Payara Qube does not perform https://quarkus.io/guides/reaugmentation[reaugmentation] and therefore only runtime properties are effective when set in Payara Qube UI.
+== Runtime Limitations
 
-Execution environment is constrained that it can only access temporary directory and cannot spawn any additional processes.
-Applications or extensions that will try to perform such operations will fail.
+=== No Reaugmentation
+Payara Qube does not perform https://quarkus.io/guides/reaugmentation[reaugmentation]. Only properties marked as runtime-configurable in Quarkus can be changed through the Payara Qube console.
+
+Build-time properties must be set before packaging your application. Changes to build-time properties require rebuilding and redeploying the ZIP file.
+
+=== Execution Constraints
+The runtime environment restricts certain operations for security and stability:
+
+* **File System Access**: Applications can only write to `/tmp`. Writes to other locations will fail.
+* **Process Spawning**: Applications cannot launch additional processes or subprocesses.
+
+If your application or its dependencies attempt these operations, deployment will fail. Review your dependencies and ensure they operate within these constraints.
