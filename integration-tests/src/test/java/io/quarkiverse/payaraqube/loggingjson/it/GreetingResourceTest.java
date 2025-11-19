@@ -28,4 +28,16 @@ class GreetingResourceTest {
                 .then()
                 .statusCode(500);
     }
+
+    @Test
+    public void testMetricsEndpointContainsMemoryMetrics() {
+        // Verify that JVM memory metrics are exposed via Micrometer
+        given()
+                .when().get("/metrics")
+                .then()
+                .statusCode(200)
+                .body(org.hamcrest.Matchers.containsString("jvm_memory_used_bytes"))
+                .body(org.hamcrest.Matchers.containsString("jvm_memory_max_bytes"))
+                .body(org.hamcrest.Matchers.containsString("jvm_memory_committed_bytes"));
+    }
 }
