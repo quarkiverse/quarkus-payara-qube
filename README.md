@@ -1,3 +1,11 @@
+
+> [!CAUTION]
+> **This extension is deprecated and no longer maintained.**
+> This repository will be archived shortly. No new releases will be published.
+> Existing versions on Maven Central remain available but are unsupported.
+
+---
+
 <div align="center">
   <img alt="Payara Qube"  src="img.png">
 </div>
@@ -5,6 +13,8 @@
 # Quarkus Payara Qube Extension
 
 [![Version](https://img.shields.io/maven-central/v/io.quarkiverse.payara-qube/quarkus-payara-qube?logo=apache-maven&style=flat-square)](https://central.sonatype.com/artifact/io.quarkiverse.payara-qube/quarkus-payara-qube-parent)
+![Deprecated](https://img.shields.io/badge/status-deprecated-red?style=flat-square)
+
 ## What is Payara Qube?
 
 Payara Qube is a Java platform for deploying and running Quarkus, Spring Boot, and Jakarta EE applications in production. 
